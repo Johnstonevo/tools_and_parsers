@@ -23,57 +23,57 @@
 
         <dir>
             <title>50 Latest Releases</title>
-            <wctoon>topfifty/last-50-recent-release</wctoon>
+            <wctoon2>topfifty/last-50-recent-release</wctoon2>
         </dir>
 
         <dir>
             <title>Today's Picks</title>
-            <wctoon>main/today</wctoon>
+            <wctoon2>main/today</wctoon2>
         </dir>
 
         <dir>
             <title>Most Popular</title>
-            <wctoon>main/popular</wctoon>
+            <wctoon2>main/popular</wctoon2>
         </dir>
 
         <dir>
             <title>Dubbed Anime</title>
-            <wctoon>category/dubbed-anime-list</wctoon>
+            <wctoon2>category/dubbed-anime-list</wctoon2>
         </dir>
 
         <dir>
             <title>Subbed Anime</title>
-            <wctoon>category/subbed-anime-list</wctoon>
+            <wctoon2>category/subbed-anime-list</wctoon2>
         </dir>
 
         <dir>
             <title>Cartoons</title>
-            <wctoon>category/cartoon-list</wctoon>
+            <wctoon2>category/cartoon-list</wctoon2>
         </dir>
 
         <dir>
             <title>Movies</title>
-            <wctoon>category/movie-list</wctoon>
+            <wctoon2>category/movie-list</wctoon2>
         </dir>
 
         <dir>
             <title>Ova Series</title>
-            <wctoon>category/ova-list</wctoon>
+            <wctoon2>category/ova-list</wctoon2>
         </dir>
 
         <dir>
             <title>Search Site</title>
-            <wctoon>wcsearch</wctoon>
+            <wctoon2>wcsearch</wctoon2>
         </dir>
 
         <dir>
             <title>Everything 101 Dalmatians</title>
-            <wctoon>wcsearch/101 dalmatians</wctoon>
+            <wctoon2>wcsearch/101 dalmatians</wctoon2>
         </dir>
 
         <dir>
             <title>Action Genre</title>
-            <wctoon>wcgenre/14</wctoon>
+            <wctoon2>wcgenre/14</wctoon2>
         </dir>
 
 
@@ -99,19 +99,19 @@ addon_icon   = xbmcaddon.Addon().getAddonInfo('icon')
 User_Agent   = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
 
 
-class WatchCartoon(Plugin):
-    name = "wctoon"
+class WatchCartoon2(Plugin):
+    name = "wctoon2"
 
     def process_item(self, item_xml):
-        if "<wctoon>" in item_xml:
+        if "<wctoon2>" in item_xml:
             item = JenItem(item_xml)
-            if "wcepisode/" in item.get("wctoon", ""):
+            if "wcepisode/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCEpisodes",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WC2Episodes",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -122,13 +122,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "wcsearch" in item.get("wctoon", ""):
+            elif "wcsearch" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCSearch",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WC2Search",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -139,13 +139,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "wcgenre" in item.get("wctoon", ""):
+            elif "wcgenre" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCGenre",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WC2Genre",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -156,13 +156,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "direct/" in item.get("wctoon", ""):
+            elif "direct/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCPlayVideo",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WC2PlayVideo",
+                    'url': item.get("wctoon2", ""),
                     'folder': False,
                     'imdb': "0",
                     'content': "files",
@@ -173,13 +173,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "topfifty/" in item.get("wctoon", ""):
+            elif "topfifty/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "TopFifty",
-                    'url': item.get("wctoon", ""),
+                    'mode': "TopFifty2",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -190,13 +190,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "main/" in item.get("wctoon", ""):
+            elif "main/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCMain",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WCMain2",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -207,13 +207,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "popular/" in item.get("wctoon", ""):
+            elif "popular/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCMain",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WCMain2",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -224,13 +224,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "category/" in item.get("wctoon", ""):
+            elif "category/" in item.get("wctoon2", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WatchCartoon",
-                    'url': item.get("wctoon", ""),
+                    'mode': "WatchCartoon2",
+                    'url': item.get("wctoon2", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -250,10 +250,10 @@ class WatchCartoon(Plugin):
     def clear_cache(self):
         dialog = xbmcgui.Dialog()
         if dialog.yesno(xbmcaddon.Addon().getAddonInfo('name'), "Clear WatchCartoon IO Plugin Cache?"):
-            koding.Remove_Table("wctoonio_com_plugin")
+            koding.Remove_Table("wctoon2io_com_plugin")
 
 
-@route(mode='WatchCartoon', args=["url"])
+@route(mode='WatchCartoon2', args=["url"])
 def get_wcstream(url):
     url = url.replace('category/', '') # Strip our category tag off.
     url = urlparse.urljoin('https://www.watchcartoononline.io', url)
@@ -282,14 +282,14 @@ def get_wcstream(url):
                     if movie_style == 1:
                         xml += "<item>"\
                                "    <title>%s</title>"\
-                               "    <wctoon>direct/%s</wctoon>"\
+                               "    <wctoon2>direct/%s</wctoon2>"\
                                "    <thumbnail>%s</thumbnail>"\
                                "    <summary>%s</summary>"\
                                "</item>" % (title,show_url,addon_icon,title)
                     else:
                         xml += "<dir>"\
                                "    <title>%s</title>"\
-                               "    <wctoon>wcepisode/%s</wctoon>"\
+                               "    <wctoon2>wcepisode/%s</wctoon2>"\
                                "    <thumbnail>%s</thumbnail>"\
                                "    <summary>%s</summary>"\
                                "</dir>" % (title,show_url,addon_icon,title)
@@ -303,7 +303,7 @@ def get_wcstream(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='TopFifty', args=["url"])
+@route(mode='TopFifty2', args=["url"])
 def get_wctopfiftystream(url):
     url = url.replace('topfifty/', '') # Strip our category tag off.
     url = urlparse.urljoin('https://www.watchcartoononline.io', url)
@@ -324,7 +324,7 @@ def get_wctopfiftystream(url):
 
                     xml += "<item>"\
                            "    <title>%s</title>"\
-                           "    <wctoon>direct/%s</wctoon>"\
+                           "    <wctoon2>direct/%s</wctoon2>"\
                            "    <thumbnail>%s</thumbnail>"\
                            "    <summary>%s</summary>"\
                            "</item>" % (title,show_url,addon_icon,title)
@@ -338,7 +338,7 @@ def get_wctopfiftystream(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCMain', args=["url"])
+@route(mode='WCMain2', args=["url"])
 def get_wcmainstream(subid):
     xml = ""
     subid = subid.replace('main/', '') # Strip our category tag off.
@@ -361,14 +361,14 @@ def get_wcmainstream(subid):
                         if 'popular' in subid:
                             xml += "<dir>"\
                                    "    <title>%s</title>"\
-                                   "    <wctoon>wcepisode/%s</wctoon>"\
+                                   "    <wctoon2>wcepisode/%s</wctoon2>"\
                                    "    <thumbnail>%s</thumbnail>"\
                                    "    <summary>%s</summary>"\
                                    "</dir>" % (title,show_url,addon_icon,title)
                         else:
                             xml += "<item>"\
                                    "    <title>%s</title>"\
-                                   "    <wctoon>direct/%s</wctoon>"\
+                                   "    <wctoon2>direct/%s</wctoon2>"\
                                    "    <thumbnail>%s</thumbnail>"\
                                    "    <summary>%s</summary>"\
                                    "</item>" % (title,show_url,addon_icon,title)
@@ -383,7 +383,7 @@ def get_wcmainstream(subid):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCEpisodes', args=["url"])
+@route(mode='WC2Episodes', args=["url"])
 def get_wcepisodes(url):
     url = url.replace('wcepisode/', '') # Strip our episode tag off.
     url = urlparse.urljoin('https://www.watchcartoononline.io', url)
@@ -404,7 +404,7 @@ def get_wcepisodes(url):
 
                 xml += "<item>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>direct/%s</wctoon>"\
+                       "    <wctoon2>direct/%s</wctoon2>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>%s</summary>"\
                        "</item>" % (title,show_url,show_icon,title)
@@ -416,7 +416,7 @@ def get_wcepisodes(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCGenre', args=["url"])
+@route(mode='WC2Genre', args=["url"])
 def get_wcgenre(url):
     if 'all' in url:
         get_wcgenrelist()
@@ -441,7 +441,7 @@ def get_wcgenre(url):
 
                 xml += "<dir>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>wcepisode/%s</wctoon>"\
+                       "    <wctoon2>wcepisode/%s</wctoon2>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>%s</summary>"\
                        "</dir>" % (title,show_url,addon_icon,title)
@@ -474,7 +474,7 @@ def get_wcgenrelist():
 
                 xml += "<dir>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>wcgenre/%s</wctoon>"\
+                       "    <wctoon2>wcgenre/%s</wctoon2>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>%s</summary>"\
                        "</dir>" % (title,show_url,addon_icon,title)
@@ -486,7 +486,7 @@ def get_wcgenrelist():
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCSearch', args=["url"])
+@route(mode='WC2Search', args=["url"])
 def get_wcsearch(url):
     xml = ""
     url = url.replace('wcsearch/', '') # Strip our search tag off when used with keywords in the xml
@@ -529,7 +529,7 @@ def get_wcsearch(url):
             if search.lower() in name.lower() or search.lower() in link.lower(): 
                 xml += "<dir>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>direct/%s</wctoon>"\
+                       "    <wctoon2>direct/%s</wctoon2>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "</dir>" % (name,link,addon_icon)
                 total += 1
@@ -546,8 +546,8 @@ def get_wcsearch(url):
     Kudos to the team over at Incursion on updates for the parsing to get links
 
 """
-@route(mode='WCPlayVideo', args=["url"])
-def get_wcplayvideo(url):
+@route(mode='WC2PlayVideo', args=["url"])
+def get_wc2playvideo(url):
     url = url.replace('direct/', '') # Strip our episode tag off.
     html = requests.get(url)
     url = ''
@@ -581,12 +581,12 @@ def save_to_db(item, url):
     try:
         koding.reset_db()
         koding.Remove_From_Table(
-            "wctoonio_com_plugin",
+            "wctoon2io_com_plugin",
             {
                 "url": url
             })
 
-        koding.Add_To_Table("wctoonio_com_plugin",
+        koding.Add_To_Table("wctoon2io_com_plugin",
                             {
                                 "url": url,
                                 "item": base64.b64encode(item),
@@ -598,7 +598,7 @@ def save_to_db(item, url):
 
 def fetch_from_db(url):
     koding.reset_db()
-    wctoonio_plugin_spec = {
+    wctoon2io_plugin_spec = {
         "columns": {
             "url": "TEXT",
             "item": "TEXT",
@@ -608,9 +608,9 @@ def fetch_from_db(url):
             "unique": "url"
         }
     }
-    koding.Create_Table("wctoonio_com_plugin", wctoonio_plugin_spec)
+    koding.Create_Table("wctoon2io_com_plugin", wctoon2io_plugin_spec)
     match = koding.Get_From_Table(
-        "wctoonio_com_plugin", {"url": url})
+        "wctoon2io_com_plugin", {"url": url})
     if match:
         match = match[0]
         if not match["item"]:

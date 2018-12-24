@@ -21,49 +21,51 @@
 
     Usage Examples:
 
+
+
         <dir>
             <title>Latest Releases (Short List)</title>
-            <wctoon>main/updates/0</wctoon>
+            <animetoon>main/updates/0</animetoon>
         </dir>
 
         <dir>
             <title>Latest Releases (Full List)</title>
-            <wctoon>wcdaily-updates</wctoon>
+            <animetoon>wcdaily-updates</animetoon>
         </dir>
 
         <dir>
             <title>Popular Series (Short List)</title>
-            <wctoon>main/popular_series/0</wctoon>
+            <animetoon>main/popular_series/0</animetoon>
         </dir>
 
         <dir>
             <title>Popular Series (Full List)</title>
-            <wctoon>popular-list</wctoon>
+            <animetoon>popular-list</animetoon>
         </dir>
 
         <dir>
             <title>Dubbed Anime</title>
-            <wctoon>category/dubbed-anime</wctoon>
+            <animetoon>category/dubbed-anime</animetoon>
         </dir>
 
         <dir>
             <title>Cartoons</title>
-            <wctoon>category/cartoon</wctoon>
+            <animetoon>category/cartoon</animetoon>
         </dir>
 
         <dir>
             <title>Movies</title>
-            <wctoon>category/movies</wctoon>
+            <animetoon>category/movies</animetoon>
         </dir>
 
         <dir>
             <title>Search Movies</title>
-            <wctoon>wcsearch</wctoon>
+            <animetoon>wcsearch</animetoon>
         </dir>
 
         <dir>
             <title>All 101 Dalmatians Movies</title>
-            <wctoon>wcsearch/101 dalmatians</wctoon>
+            <animetoon>wcsearch/101 dalmatians</animetoon>
         </dir>
 
 
@@ -90,19 +92,19 @@ addon_icon   = xbmcaddon.Addon().getAddonInfo('icon')
 User_Agent   = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
 
 
-class WatchCartoon(Plugin):
-    name = "wctoon"
+class AnimeCartoon(Plugin):
+    name = "animetoon"
 
     def process_item(self, item_xml):
-        if "<wctoon>" in item_xml:
+        if "<animetoon>" in item_xml:
             item = JenItem(item_xml)
-            if "wcepisode/" in item.get("wctoon", ""):
+            if "wcepisode/" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCEpisodes",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeEpisodes",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -113,13 +115,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "wcsearch" in item.get("wctoon", ""):
+            elif "wcsearch" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCSearch",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeSearch",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -130,13 +132,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "list-videos/" in item.get("wctoon", ""):
+            elif "list-videos/" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCListVideos",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeListVideos",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -147,13 +149,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "direct/" in item.get("wctoon", ""):
+            elif "direct/" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCPlayVideo",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimePlayVideo",
+                    'url': item.get("animetoon", ""),
                     'folder': False,
                     'imdb': "0",
                     'content': "files",
@@ -164,13 +166,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "main/" in item.get("wctoon", ""):
+            elif "main/" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCMain",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeMain",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -181,13 +183,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "popular-list" in item.get("wctoon", ""):
+            elif "popular-list" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCPopular",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimePopular",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -198,13 +200,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "wcdaily-updates" in item.get("wctoon", ""):
+            elif "wcdaily-updates" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WCDaily",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeDaily",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -215,13 +217,13 @@ class WatchCartoon(Plugin):
                     'context': get_context_items(item),
                     "summary": item.get("summary", None)
                 }
-            elif "category/" in item.get("wctoon", ""):
+            elif "category/" in item.get("animetoon", ""):
                 result_item = {
                     'label': item["title"],
                     'icon': item.get("thumbnail", addon_icon),
                     'fanart': item.get("fanart", addon_fanart),
-                    'mode': "WatchCartoon",
-                    'url': item.get("wctoon", ""),
+                    'mode': "AnimeCartoon",
+                    'url': item.get("animetoon", ""),
                     'folder': True,
                     'imdb': "0",
                     'content': "files",
@@ -244,7 +246,7 @@ class WatchCartoon(Plugin):
             koding.Remove_Table("animetoon_com_plugin")
 
 
-@route(mode='WatchCartoon', args=["url"])
+@route(mode='AnimeCartoon', args=["url"])
 def get_wcstream(url):
     url = url.replace('category/', '') # Strip our category tag off.
     url = urlparse.urljoin('http://www.animetoon.org/', url)
@@ -267,7 +269,7 @@ def get_wcstream(url):
                         title = remove_non_ascii(title)
                         xml += "<dir>"\
                                "    <title>%s</title>"\
-                               "    <wctoon>wcepisode/%s</wctoon>"\
+                               "    <animetoon>wcepisode/%s</animetoon>"\
                                "    <thumbnail>%s</thumbnail>"\
                                "    <summary>%s</summary>"\
                                "</dir>" % (title,show_url,addon_icon,title)
@@ -281,8 +283,8 @@ def get_wcstream(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCMain', args=["url"])
-def get_wcmainstream(subid):
+@route(mode='AnimeMain', args=["url"])
+def get_Animemainstream(subid):
     xml = ""
     subid = subid.replace('main/', '', 1) # Strip our category tag off.
     subid = subid.split('/')
@@ -301,7 +303,7 @@ def get_wcmainstream(subid):
                     show_icon = re.compile('src="(.+?)"',re.DOTALL).findall(content)[0]
                     xml += "<dir>"\
                            "    <title>%s</title>"\
-                           "    <wctoon>wcepisode/%s</wctoon>"\
+                           "    <animetoon>wcepisode/%s</animetoon>"\
                            "    <thumbnail>%s</thumbnail>"\
                            "    <summary>%s</summary>"\
                            "</dir>" % (title,show_url,show_icon,title)
@@ -319,7 +321,7 @@ def get_wcmainstream(subid):
                         title = remove_non_ascii(title)
                         xml += "<dir>"\
                                "    <title>%s</title>"\
-                               "    <wctoon>wcepisode/%s</wctoon>"\
+                               "    <animetoon>wcepisode/%s</animetoon>"\
                                "    <thumbnail>%s</thumbnail>"\
                                "    <summary>%s</summary>"\
                                "</dir>" % (title,show_url,addon_icon,title)
@@ -332,7 +334,7 @@ def get_wcmainstream(subid):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCPopular', args=["url"])
+@route(mode='AnimePopular', args=["url"])
 def get_wcpopular(url):
     url = urlparse.urljoin('http://www.animetoon.org/', url)
 
@@ -352,7 +354,7 @@ def get_wcpopular(url):
                     show_icon = re.compile('src="(.+?)"',re.DOTALL).findall(content)[0]
                     xml += "<dir>"\
                            "    <title>%s</title>"\
-                           "    <wctoon>wcepisode/%s</wctoon>"\
+                           "    <animetoon>wcepisode/%s</animetoon>"\
                            "    <thumbnail>%s</thumbnail>"\
                            "    <summary>%s</summary>"\
                            "</dir>" % (title,show_url,show_icon,title)
@@ -366,7 +368,7 @@ def get_wcpopular(url):
                 next_url = 'popular-list/%s' % (re.compile('href="http://www.animetoon.org/popular-list/(.+?)"',re.DOTALL).findall(next_li)[0])
                 xml += "<dir>"\
                        "    <title>Next Page >></title>"\
-                       "    <wctoon>%s</wctoon>"\
+                       "    <animetoon>%s</animetoon>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>Next Page</summary>"\
                        "</dir>" % (next_url,show_icon)
@@ -378,7 +380,7 @@ def get_wcpopular(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCDaily', args=["url"])
+@route(mode='AnimeDaily', args=["url"])
 def get_wcdaily(url):
     url = url.replace('wcdaily-', '') # Strip our episode tag off.
     url = urlparse.urljoin('http://www.animetoon.org/', url)
@@ -399,7 +401,7 @@ def get_wcdaily(url):
                         title = remove_non_ascii(title)
                         xml += "<dir>"\
                                "    <title>%s</title>"\
-                               "    <wctoon>wcepisode/%s</wctoon>"\
+                               "    <animetoon>wcepisode/%s</animetoon>"\
                                "    <thumbnail>%s</thumbnail>"\
                                "    <summary>%s</summary>"\
                                "</dir>" % (title,show_url,addon_icon,title)
@@ -413,7 +415,7 @@ def get_wcdaily(url):
                 next_url = 'wcdaily-updates/%s' % (re.compile('href="http://www.animetoon.org/updates/(.+?)"',re.DOTALL).findall(next_li)[0])
                 xml += "<dir>"\
                        "    <title>Next Page >></title>"\
-                       "    <wctoon>%s</wctoon>"\
+                       "    <animetoon>%s</animetoon>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>Next Page</summary>"\
                        "</dir>" % (next_url,addon_icon)
@@ -425,7 +427,7 @@ def get_wcdaily(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCEpisodes', args=["url"])
+@route(mode='AnimeEpisodes', args=["url"])
 def get_wcepisodes(url):
     url = url.replace('wcepisode/', '') # Strip our episode tag off.
     url = urlparse.urljoin('http://www.animetoon.org/', url)
@@ -446,7 +448,7 @@ def get_wcepisodes(url):
                 show_icon = re.compile('src="(.+?)"',re.DOTALL).findall(show_icon)[0]
                 xml += "<item>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>list-videos/%s</wctoon>"\
+                       "    <animetoon>list-videos/%s</animetoon>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>%s</summary>"\
                        "</item>" % (title,show_url,show_icon,title)
@@ -458,7 +460,7 @@ def get_wcepisodes(url):
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCSearch', args=["url"])
+@route(mode='AnimeSearch', args=["url"])
 def get_wcsearch(url):
     xml = ""
     url = url.replace('wcsearch/', '') # Strip our search tag off when used with keywords in the xml
@@ -500,7 +502,7 @@ def get_wcsearch(url):
                 show_icon = re.compile('src="(.+?)"',re.DOTALL).findall(content)[0]
                 xml += "<dir>"\
                        "    <title>%s</title>"\
-                       "    <wctoon>wcepisode/%s</wctoon>"\
+                       "    <animetoon>wcepisode/%s</animetoon>"\
                        "    <thumbnail>%s</thumbnail>"\
                        "    <summary>%s</summary>"\
                        "</dir>" % (title,show_url,show_icon,title)
@@ -515,7 +517,7 @@ def get_wcsearch(url):
             next_url = 'popular-list/%s' % (re.compile('href="http://www.animetoon.org/popular-list/(.+?)"',re.DOTALL).findall(next_li)[0])
             xml += "<dir>"\
                    "    <title>Next Page >></title>"\
-                   "    <wctoon>%s</wctoon>"\
+                   "    <animetoon>%s</animetoon>"\
                    "    <thumbnail>%s</thumbnail>"\
                    "    <summary>Next Page</summary>"\
                    "</dir>" % (next_url,show_icon)
@@ -527,7 +529,7 @@ def get_wcsearch(url):
         display_list(jenlist.get_list(), jenlist.get_content_type())
 
 
-@route(mode='WCListVideos', args=["url"])
+@route(mode='AnimeListVideos', args=["url"])
 def get_wclistvideos(url):
     url = url.replace('list-videos/', '') # Strip our episode tag off.
 
@@ -547,7 +549,7 @@ def get_wclistvideos(url):
                     host = host.split('/')[0].split('.')[1].upper() 
                     xml += "<item>"\
                            "    <title>%s</title>"\
-                           "    <wctoon>direct/%s</wctoon>"\
+                           "    <animetoon>direct/%s</animetoon>"\
                            "    <thumbnail>%s</thumbnail>"\
                            "    <summary>%s</summary>"\
                            "</item>" % (host,str(nurl[0][0]),addon_icon,host)
@@ -558,8 +560,8 @@ def get_wclistvideos(url):
     jenlist = JenList(xml)
     display_list(jenlist.get_list(), jenlist.get_content_type())
 
-@route(mode='WCPlayVideo', args=["url"])
-def get_wcplayvideo(url):
+@route(mode='AnimePlayVideo', args=["url"])
+def get_Animeplayvideo(url):
     url = url.replace('direct/', '') # Strip our episode tag off.
     try:
         xbmc.executebuiltin("PlayMedia(%s)" % (url))
